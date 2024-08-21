@@ -1,14 +1,20 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
 import { CiUser } from "react-icons/ci";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
-    const menuList = ['Women', 'Men', 'Baby', 'Kids','H&M HOme', 'Sport', 'Sale', '지속가능성']
+  const menuList = ['Women', 'Men', 'Baby', 'Kids','H&M HOme', 'Sport', 'Sale', '지속가능성'];
+  const navigate = useNavigate();
+  const goToLogin = () => {
+    navigate(`/login`);
+  }
   return (
     <div>
       <div>
         <div className='login-button'>
-            <CiUser />
-            <div>로그인</div>
+            <CiUser  size={70}/>
+            <Button className="loginBtn" variant="primary"  onClick={() => { goToLogin(); }}>로그인</Button>
         </div>
       </div>
       

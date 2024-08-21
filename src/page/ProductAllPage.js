@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Container, Row, Col } from "react-bootstrap"
 import ProductCard from '../component/ProductCard';
 
 const ProductAllPage = () => {
@@ -12,19 +13,20 @@ const ProductAllPage = () => {
     setProductList(data);
   }
 
-
-
   useEffect(() => {
     getProducts()
   }, [])
 
-
-
   return (
     <div>
+      <Container>
+        <Row>
+        {productList.map((menu) => (
+          <Col lg={3} key={menu.id}><ProductCard item={menu}/></Col>
+        ))}
 
-      <h1>전체 상품 페이지</h1>
-      <ProductCard/>
+        </Row>
+      </Container>
     </div>
   )
 }

@@ -53,3 +53,8 @@
 .product:hover img {
     transform: scale(1.4);
 }
+
+.product-img {
+    display: flex;
+    justify-content: flex-end;
+}

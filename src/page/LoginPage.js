@@ -11,6 +11,7 @@ const LoginPage = ({setAuthenticate}) => {
     setAuthenticate(true);
     navigate("/");
   }
+  
 
   return (
     <Container>

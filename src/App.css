@@ -2,6 +2,9 @@
     margin-top: 20px;
 }
 
+.logo-img {
+    cursor: pointer;
+}
 
 .login-button {
     display: flex;

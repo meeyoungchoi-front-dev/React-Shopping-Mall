@@ -15,6 +15,10 @@ const Navbar = ({ isLoggedIn, setAuthenticate }) => {
     navigate(`/`);
   }
 
+  const goToMainPage = () => {
+    navigate("/");
+  }
+
   const search = (event) => {
     if (event.key === "Enter") {
         event.preventDefault(); // 폼이 제출되지 않도록 기본 동작을 막음
@@ -40,7 +44,7 @@ const Navbar = ({ isLoggedIn, setAuthenticate }) => {
       </div>
       
       <div className='nav-section'>
-        <img width = {100} src="https://th.bing.com/th/id/OIP.V3k4wm5U44DQ2DkYhhpcCAHaEK?rs=1&pid=ImgDetMain"/>
+        <img className='logo-img' width = {100} src="https://th.bing.com/th/id/OIP.V3k4wm5U44DQ2DkYhhpcCAHaEK?rs=1&pid=ImgDetMain" onClick={goToMainPage}/>
       </div>
       <div className='menu-area'>
         <div className='menu-list'>

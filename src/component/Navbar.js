@@ -1,73 +1,75 @@
 import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import { CiUser } from "react-icons/ci";
-import { FaSearch } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { faMagnifyingGlass, faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
+
+
 const Navbar = ({ isLoggedIn, setAuthenticate }) => {
-  const menuList = ['Women', 'Men', 'Baby', 'Kids','H&M HOme', 'Sport', 'Sale', '지속가능성'];
-  const navigate = useNavigate();
-  const goToLogin = () => {
-    navigate(`/login`);
-  }
+  const menuList = ['Women', 'Men', 'Baby', 'kids', 'Sport']
+    const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(false);
 
-  const handleLogout = () => {
-    setAuthenticate(false); // 로그아웃 상태로 변경
-    navigate(`/`);
-  }
-
-  const goToMainPage = () => {
-    navigate("/");
-  }
-
-  const search = (event) => {
-    if (event.key === "Enter") {
-        event.preventDefault(); // 폼이 제출되지 않도록 기본 동작을 막음
-        let keyword = event.target.value;
-        navigate(`/?q=${keyword}`);
+    const goToLogin = () => {
+        navigate('/login')
     }
-  }
 
+    const search = (event) => {
+        if(event.key === 'Enter') {
+            // console.log('we click this key', event.key)
+            // 입력한 검색어를 읽어와서 
+            let keyword = event.target.value 
+            console.log('keyword', keyword)
+            // url을 바꿔준다.
+            navigate(`/?q=${keyword}`)
+        }
+    }
+
+    const handleLogout = () => {
+        setAuthenticate(false)
+    }
+    const toggleMenu = () => {
+        setIsOpen(!isOpen)
+    };
   return (
+    <div className="nav-wrap">
     <div>
-      <div>
-        <div className='login-button'>
-            <CiUser  size={70}/>
-            {isLoggedIn ? (
-                <Button className="loginBtn" variant="primary"  onClick={handleLogout}>로그아웃</Button>
-            ) : (
-
-              <Button className="loginBtn" variant="primary" onClick={goToLogin}>
+        {/* 미니과제1 로그인 페이지 이동 */}
+        {/* <Link to='/login'>
+            <div className="login-button">
+                <FontAwesomeIcon icon={faUser} className="ico-login"/>
                 로그인
-              </Button>
-            )}
+            </div>
+        </Link> */}
+
+        <div className="login-button" onClick={isLoggedIn ? handleLogout : goToLogin}>
+            <FontAwesomeIcon icon={faUser} className="ico-login"/>
+            {isLoggedIn ? '로그아웃' : '로그인'}
         </div>
-      </div>
-      
-      <div className='nav-section'>
-        <img className='logo-img' width = {100} src="https://th.bing.com/th/id/OIP.V3k4wm5U44DQ2DkYhhpcCAHaEK?rs=1&pid=ImgDetMain" onClick={goToMainPage}/>
-      </div>
-      <div className='menu-area'>
-        <div className='menu-list'>
-          
-                {menuList.map((menu) => (
-                    <div>{menu}</div>
-                ))}
-           
-            
-        </div>
-        <div className='search-area'>
-            <form className='w-[500px] relative'>
-                <div className='relative'>
-                    <input type="search" placeholder='검색어를 입력하세요' className='search-input2'  onKeyDown={search} />
-                    <button>
-                    <FaSearch />
-                    </button>
-                </div>    
-            </form>   
-        </div>
-       
-      </div>
     </div>
+    <div className="nav-section">
+        <Link to="/">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu33MvMQxzeLQWuQTeJbGoEUq_bsuAH1HMag&s" width={100} />
+        </Link>
+    </div>
+    <div className={`menu-wrap ${isOpen ? 'on' : ''}`} >
+        <div className={`menu-area`}>
+            <div className="menu-list-wrap">
+                <ul className="menu-list">
+                    {menuList.map((menu, index) => (
+                        <li key={index}>{menu}</li>
+                    ))}
+                </ul>
+            </div>
+            <div className="input-wrap">
+                <div className="input-box">
+                    <FontAwesomeIcon icon={faMagnifyingGlass} className="ico-search"/>
+                    <input type="text" onKeyPress={(event) => search(event)} />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
   )
 }
 

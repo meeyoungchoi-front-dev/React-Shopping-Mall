@@ -10,13 +10,6 @@ const ResponsiveSidebar = () => {
     return (
         <div>
             <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-                <div className="user">
-                    <img
-                        src="https://avatars.abstractapi.com/v1/?api_key=fdcb21e3a7ec4a2c91ce93c94180334c&name=Mee Young"
-                        alt="User"
-                        className="user-img"
-                    />
-                </div>
                 <ul>
                     <li>
                         <a href="#">
@@ -46,33 +39,13 @@ const ResponsiveSidebar = () => {
                         </a>
                         <span className="tooltip">Kids</span>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i className="bx bx-body"></i>
-                            <span className="nav-item">H&M</span>
-                        </a>
-                        <span className="tooltip">H&M</span>
-                    </li>
+
                     <li>
                         <a href="#">
                             <i className="bx bx-location-plus"></i>
                             <span className="nav-item">Sport</span>
                         </a>
                         <span className="tooltip">Sport</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i className="bx bx-cog"></i>
-                            <span className="nav-item">Sale</span>
-                        </a>
-                        <span className="tooltip">Sale</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i className="bx bx-cog"></i>
-                            <span className="nav-item">지속가능성</span>
-                        </a>
-                        <span className="tooltip">지속가능성</span>
                     </li>
                 </ul>
             </div>

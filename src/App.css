@@ -33,7 +33,6 @@
     padding: 10px;
 }
 
-
 .search-input {
     display: flex;
     justify-content: flex-end;
@@ -119,4 +118,83 @@
 li:hover .tooltip {
     visibility: visible;
     opacity: 1;
+}
+
+
+.size-dropdown {
+    margin-bottom: 10px;
+}
+
+@media (min-width: 1300px) {
+    .product-all {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (max-width: 1200px) and (min-width: 992px) {
+    .product-all {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 992px) and (min-width: 768px) {
+    .product-all {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .product-all {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .menu-list {
+    display: flex;
+    list-style-type: none;
+  }
+  
+  .menu-list li {
+    padding: 5px;
+  }
+  
+  .menu-area {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* 반응형 */
+@media screen and (max-width: 63rem) {
+    .menu-list {
+      display: none;
+    }
+    .search-box{
+      display: none;
+    }
+
+    .slide-text h2 {
+        font-weight: 700;
+        font-size:1.0em;
+        width: 100%;
+    }
+
+    .logo-img img {
+        width: 150px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+}
+.search-btn {
+    color: black;
+}
+
+.search-input {
+    margin-bottom: 10px;
+    border: none;
+    width: 115px;
+    background: none;
+    outline: none;
+    padding: 0px;
+    font-size: 14px;
+    padding-left: 10px;
 }

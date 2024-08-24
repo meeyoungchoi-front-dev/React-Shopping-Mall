@@ -6,7 +6,7 @@ import ResponsiveSidebar from '../component/ResponsiveSidebar';
 
 const ProductAllPage = () => {
   const [productList, setProductList] = useState([]);
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
   const getProducts = async () => {
     let searchQuery = query.get('q') || "";
     console.log("searchQuery: ", searchQuery);

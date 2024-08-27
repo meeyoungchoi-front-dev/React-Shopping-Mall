@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col } from "react-bootstrap"
-import ResponsiveSidebar from '../component/ResponsiveSidebar'; // ResponsiveSidebar를 import
-import ProductCard from '../component/ProductCard'; // ProductCard를 import
+import ResponsiveSidebar from '../component/ResponsiveSidebar';
+import ProductCard from '../component/ProductCard';
 import {productAction} from '../redux/actions/productAction';
 import {useDispatch, useSelector} from "react-redux";
 
@@ -15,7 +15,7 @@ const Navbar = ({ isLoggedIn, setAuthenticate }) => {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
-    const productList = useSelector((state) => state.productList);
+    const productList = useSelector((state) => state.product.productList);
 
     const goToLogin = () => {
         navigate('/login');
@@ -36,11 +36,6 @@ const Navbar = ({ isLoggedIn, setAuthenticate }) => {
       let searchQuery = query.get('q') || "";
       console.log("searchQuery: ", searchQuery);
       dispatch(productAction.getProducts(searchQuery))
-    //   let url = `https://my-json-server.typicode.com/meeyoungchoi-front-dev/REACT-SHOPPING-MALL/products?q=${searchQuery}`;
-    //   let response = await fetch(url)
-    //   let data = await response.json();
-    //   console.log(data);
-    //   setProductList(data);
     }
   
     useEffect(() => {

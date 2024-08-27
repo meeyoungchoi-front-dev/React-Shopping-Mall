@@ -6,10 +6,16 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col } from "react-bootstrap"
 import ResponsiveSidebar from '../component/ResponsiveSidebar'; // ResponsiveSidebar를 import
 import ProductCard from '../component/ProductCard'; // ProductCard를 import
+import {productAction} from '../redux/actions/productAction';
+import {useDispatch, useSelector} from "react-redux";
+
+
 
 const Navbar = ({ isLoggedIn, setAuthenticate }) => {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
+    const productList = useSelector((state) => state.productList);
 
     const goToLogin = () => {
         navigate('/login');
@@ -22,16 +28,19 @@ const Navbar = ({ isLoggedIn, setAuthenticate }) => {
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
-    const [productList, setProductList] = useState([]);
+  
+
+    console.log("productList: ", productList);
     const [query] = useSearchParams();
-    const getProducts = async () => {
+    const getProducts =  () => {
       let searchQuery = query.get('q') || "";
       console.log("searchQuery: ", searchQuery);
-      let url = `https://my-json-server.typicode.com/meeyoungchoi-front-dev/REACT-SHOPPING-MALL/products?q=${searchQuery}`;
-      let response = await fetch(url)
-      let data = await response.json();
-      console.log(data);
-      setProductList(data);
+      dispatch(productAction.getProducts(searchQuery))
+    //   let url = `https://my-json-server.typicode.com/meeyoungchoi-front-dev/REACT-SHOPPING-MALL/products?q=${searchQuery}`;
+    //   let response = await fetch(url)
+    //   let data = await response.json();
+    //   console.log(data);
+    //   setProductList(data);
     }
   
     useEffect(() => {
@@ -57,10 +66,15 @@ const Navbar = ({ isLoggedIn, setAuthenticate }) => {
             <ResponsiveSidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
             <Container className="product-all">
               <Row>
-              {productList.map((menu) => (
-                <Col lg={4} key={menu.id}><ProductCard item={menu}/></Col>
-              ))}
-
+                {productList && productList.length > 0 ? (
+                    productList.map((menu) => (
+                        <Col lg={4} key={menu.id}>
+                            <ProductCard item={menu} />
+                        </Col>
+                    ))
+                ) : (
+                    <p>No products found.</p>  // 조건을 만족하지 않으면 표시
+                )}
               </Row>
             </Container>
         </div>
